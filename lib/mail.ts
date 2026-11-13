@@ -14,7 +14,7 @@ export async function sendMail(opts: { subject: string; text: string; replyTo?: 
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: process.env.MAIL_FROM || "Les Petit Bulles <onboarding@resend.dev>",
+      from: process.env.MAIL_FROM || "Les Petit Bulles <hemsida@lespetitbulles.se>",
       to: [process.env.INQUIRY_TO || site.email],
       subject: opts.subject,
       text: opts.text,
