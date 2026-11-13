@@ -26,7 +26,7 @@ Se `.env.example`.
 - `STRIPE_SECRET_KEY` – krävs för att Fredagslådan ska kunna betalas.
 - `STRIPE_WEBHOOK_SECRET` – valfritt; mejlar Josefin vid varje betald låda.
 - `RESEND_API_KEY`, `MAIL_FROM`, `INQUIRY_TO` – krävs för att formulären ska skicka mejl. Utan dem visas en "mejla oss"-länk.
-- `NEXT_PUBLIC_SITE_URL` – sätts när den egna domänen är kopplad.
+- `NEXT_PUBLIC_SITE_URL` – valfritt; produktion använder https://www.lespetitbulles.se.
 
 ## Lokalt
 
