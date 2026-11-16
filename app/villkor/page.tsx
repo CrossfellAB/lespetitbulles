@@ -14,7 +14,7 @@ export default function Villkor() {
       <p>{seller}{site.company.orgNr ? `, org.nr ${site.company.orgNr}` : ""}, {site.address.line1}, {site.address.city}. Telefon {site.phone}, e-post {site.email}.</p>
 
       <h2 className="h-m" style={{ margin: "32px 0 12px" }}>Fredagslådan</h2>
-      <p>Priset är {fredagsladan.priceSek} kr per låda inklusive moms. Du betalar när du beställer, via Stripe, med kort, Swish, Apple Pay eller Google Pay. Kortuppgifter hanteras av Stripe och når aldrig oss.</p>
+      <p>Priset är {fredagsladan.priceSek} kr per låda inklusive moms. Du betalar när du beställer, via Stripe, med kort, Apple Pay, Google Pay eller Klarna. Kortuppgifter hanteras av Stripe och når aldrig oss.</p>
       <p>Lådan hämtas i butiken på den dag och tid du väljer, under öppettiderna och tidigast {fredagsladan.leadTimeHours} timmar efter beställningen. Vi skickar inte lådor.</p>
       <p>Eftersom lådan innehåller färska livsmedel som snabbt blir dåliga gäller inte ångerrätten enligt distansavtalslagen. Kan du inte hämta på vald tid? Ring oss så snart som möjligt så försöker vi flytta hämtningen.</p>
       <p>Är något fel med lådan, kontakta oss samma dag så löser vi det.</p>

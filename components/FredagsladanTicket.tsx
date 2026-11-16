@@ -13,7 +13,7 @@ export default function FredagsladanTicket() {
         <div className="ticket-facts">
           <div><b>Hämta</b>ons–lör, under öppettiderna</div>
           <div><b>Redo</b>två timmar efter beställning</div>
-          <div><b>Betala</b>kort, Swish, Apple &amp; Google Pay</div>
+          <div><b>Betala</b>kort, Apple &amp; Google Pay, Klarna</div>
         </div>
         <div className="price-row">
           <span className="price">{fredagsladan.priceSek} kr</span>
