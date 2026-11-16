@@ -23,7 +23,8 @@ export default function Footer() {
           <p>
             <a href={`tel:${site.phoneHref}`}>{site.phone}</a><br />
             <a href={`mailto:${site.email}`}>{site.email}</a><br />
-            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer">Instagram {site.instagram.handle}</a>
+            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer">Instagram {site.instagram.handle}</a><br />
+            <a href={site.facebook.url} target="_blank" rel="noopener noreferrer">Facebook</a>
           </p>
         </div>
       </div>

@@ -21,7 +21,7 @@ export default function Kontakt() {
             <div className="fact"><h3>Adress</h3><p>{site.address.line1}<br />{site.address.city}</p></div>
             <div className="fact"><h3>Öppettider</h3><p>{openingHoursText.map((o) => (<span key={o.days}>{o.days} {o.hours}<br /></span>))}Söndag–tisdag stängt</p></div>
             <div className="fact"><h3>Telefon &amp; e-post</h3><p><a href={`tel:${site.phoneHref}`}>{site.phone}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a></p></div>
-            <div className="fact"><h3>Instagram</h3><p><a href={site.instagram.url} target="_blank" rel="noopener noreferrer">{site.instagram.handle}</a></p></div>
+            <div className="fact"><h3>Instagram &amp; Facebook</h3><p><a href={site.instagram.url} target="_blank" rel="noopener noreferrer">{site.instagram.handle}</a><br /><a href={site.facebook.url} target="_blank" rel="noopener noreferrer">{site.facebook.handle} på Facebook</a></p></div>
           </div>
           <div className="panel wide">
             <h2 className="h-m" style={{ marginBottom: 6 }}>Skriv till oss</h2>
