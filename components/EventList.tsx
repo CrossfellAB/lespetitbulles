@@ -32,15 +32,21 @@ export default function EventList({ limit, linkTo = "/event" }: { limit?: number
           const [first, ...rest] = (e.recurring ?? "").split(" ");
           dateBlock = (<><div className="r">{first.toLowerCase()}</div><div className="m">{rest.join(" ")}</div></>);
         }
-        return (
-          <Link key={e.title + (e.date ?? "")} href={`${linkTo}?event=${encodeURIComponent(e.title)}#anmalan`} className="event">
+        const inner = (
+          <>
             <div className="event-date">{dateBlock}</div>
             <div className="event-text">
               <h3>{e.title}{e.example && <span className="tag-example">Exempel</span>}</h3>
               <p>{e.time}{e.price ? ` · ${e.price}` : ""} · {e.description}</p>
             </div>
-            <span className="pill">Anmäl intresse</span>
-          </Link>
+            <span className={e.dropIn ? "pill quiet" : "pill"}>{e.dropIn ? "Drop-in · kom förbi" : "Anmäl intresse"}</span>
+          </>
+        );
+        const key = e.title + (e.date ?? "");
+        return e.dropIn ? (
+          <div key={key} className="event">{inner}</div>
+        ) : (
+          <Link key={key} href={`${linkTo}?event=${encodeURIComponent(e.title)}#anmalan`} className="event">{inner}</Link>
         );
       })}
     </div>

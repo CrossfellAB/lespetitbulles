@@ -10,6 +10,7 @@ export type EventItem = {
   description: string;
   price?: string;
   example?: boolean; // visar "exempel" tills riktiga event finns
+  dropIn?: boolean; // ingen anmälan: visar "Kom förbi" i stället för knappen
 };
 
 export const events: EventItem[] = [
@@ -28,6 +29,7 @@ export const events: EventItem[] = [
   },
   {
     title: "Beaujolais Nouveau-premiär",
+    dropIn: true,
     date: "2026-11-19",
     time: "11–19",
     description: "Release av årets Bojo. Välkomna!",
@@ -40,6 +42,7 @@ export const events: EventItem[] = [
   },
   {
     title: "Deutz Friday!",
+    dropIn: true,
     date: "2026-11-27",
     time: "15–19",
     description: "Marcus från Swedish Brand Wines serverar Amour de Deutz och engelska Nyetimber.",

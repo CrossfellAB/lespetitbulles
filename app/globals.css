@@ -170,6 +170,7 @@ a.event:hover { background: var(--chalk); color: var(--ink); }
 .event-text h3 { font-size: 28px; line-height: 1.2; color: var(--ink); }
 .event-text p { margin: 2px 0 0; font-size: 16px; color: var(--muted); }
 .pill { border: 1.5px solid var(--wine); color: var(--wine); border-radius: 40px; padding: 9px 20px; font-weight: 500; font-size: 15px; white-space: nowrap; }
+.pill.quiet { border-color: transparent; color: var(--muted); font-style: italic; }
 .tag-example { display: inline-block; font: 600 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; background: var(--apricot); color: var(--plum); padding: 5px 9px; border-radius: 20px; margin-left: 10px; vertical-align: middle; }
 
 /* Tjänstekort */
