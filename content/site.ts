@@ -11,7 +11,7 @@ export const site = {
   email: "josefin@farmhousesweden.se",
   instagram: { handle: "@farmhousesweden", url: "https://www.instagram.com/farmhousesweden/" },
   // Juridisk säljare. Visas i sidfoten och i köpvillkoren. Org.nr visas när det fylls i.
-  company: { name: "Swedish Farmhouse AB", orgNr: "" },
+  company: { name: "Swedish Farmhouse AB", orgNr: "556872-8033" },
 };
 
 // Öppettider. Veckodag: 0 = söndag, 1 = måndag … 6 = lördag.
