@@ -28,7 +28,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} {site.company.name || site.name}{site.company.orgNr ? ` · Org.nr ${site.company.orgNr}` : ""}</span>
+        <span>© {new Date().getFullYear()} {site.name}{site.company.name ? ` · ${site.company.name}` : ""}{site.company.orgNr ? ` · Org.nr ${site.company.orgNr}` : ""}</span>
         <span><Link href="/kontakt">Kontakt</Link> · <Link href="/villkor">Köpvillkor &amp; integritet</Link></span>
       </div>
     </footer>

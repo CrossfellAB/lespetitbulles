@@ -10,8 +10,8 @@ export const site = {
   phoneHref: "+46708479100",
   email: "josefin@farmhousesweden.se",
   instagram: { handle: "@farmhousesweden", url: "https://www.instagram.com/farmhousesweden/" },
-  // Visas i sidfoten när de finns.
-  company: { name: "", orgNr: "" },
+  // Juridisk säljare. Visas i sidfoten och i köpvillkoren. Org.nr visas när det fylls i.
+  company: { name: "Swedish Farmhouse AB", orgNr: "" },
 };
 
 // Öppettider. Veckodag: 0 = söndag, 1 = måndag … 6 = lördag.
