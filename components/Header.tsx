@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 const left = [
-  { href: "/fredagsladan", label: "Fredagslådan" },
+  { href: "/deli-to-go", label: "Deli To-Go" },
   { href: "/event", label: "Event & provningar" },
   { href: "/catering", label: "Catering" },
   { href: "/after-work", label: "After work" },
@@ -40,7 +40,7 @@ export default function Header() {
         </Link>
         <div className="nav nav-right">
           <nav className="nav" aria-label="Huvudmeny, fortsättning">{right.map(link)}</nav>
-          <Link href="/fredagsladan" className="btn btn-wine btn-small">Beställ</Link>
+          <Link href="/deli-to-go" className="btn btn-wine btn-small">Beställ</Link>
         </div>
         <details className="menu-toggle" ref={menu}>
           <summary>Meny</summary>

@@ -1,4 +1,5 @@
-import { closedDates, fredagsladan, openingHours } from "@/content/site";
+import { closedDates } from "@/content/site";
+import { deliSettings } from "@/content/deli";
 
 // Allt räknas i svensk tid oavsett var servern eller besökaren befinner sig.
 // Tider jämförs som "lokal tid tolkad som UTC", vilket gör jämförelserna oberoende av sommartid.
@@ -47,20 +48,20 @@ export function dayLabel(dateKey: string) {
 export function getPickupDays(now: Date = new Date()): PickupDay[] {
   const p = stockholmParts(now);
   const nowLocal = Date.UTC(p.y, p.m - 1, p.d, p.hh, p.mm);
-  const earliest = nowLocal + fredagsladan.leadTimeHours * 60 * 60 * 1000;
+  const earliest = nowLocal + deliSettings.leadTimeHours * 60 * 60 * 1000;
   const days: PickupDay[] = [];
 
-  for (let i = 0; i <= fredagsladan.daysAhead; i++) {
+  for (let i = 0; i <= deliSettings.daysAhead; i++) {
     const day = new Date(Date.UTC(p.y, p.m - 1, p.d + i));
     const wd = day.getUTCDay();
-    const hours = openingHours[wd];
+    const hours = deliSettings.pickupHours[wd];
     const key = toKey(day.getUTCFullYear(), day.getUTCMonth() + 1, day.getUTCDate());
     if (!hours || closedDates.includes(key)) continue;
 
-    const first = minutes(hours.open);
-    const last = minutes(hours.close) - fredagsladan.lastPickupBeforeCloseMinutes;
+    const first = minutes(hours.first);
+    const last = minutes(hours.last);
     const times: string[] = [];
-    for (let t = first; t <= last; t += fredagsladan.slotMinutes) {
+    for (let t = first; t <= last; t += deliSettings.slotMinutes) {
       const slot = day.getTime() + t * 60 * 1000;
       if (slot >= earliest) times.push(fmtTime(t));
     }

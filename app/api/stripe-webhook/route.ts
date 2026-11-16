@@ -3,7 +3,7 @@ import type Stripe from "stripe";
 import { sendMail } from "@/lib/mail";
 import { getStripe } from "@/lib/stripe";
 
-// Mejlar Josefin när en Fredagslåda är betald. Kräver STRIPE_WEBHOOK_SECRET och RESEND_API_KEY.
+// Mejlar Josefin när en Deli To-Go-beställning är betald. Kräver STRIPE_WEBHOOK_SECRET och RESEND_API_KEY.
 export async function POST(req: Request) {
   const stripe = getStripe();
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -21,14 +21,23 @@ export async function POST(req: Request) {
     const s = event.data.object as Stripe.Checkout.Session;
     if (s.payment_status === "paid") {
       const m = s.metadata ?? {};
+      let items: string[] = [];
+      try {
+        const li = await stripe.checkout.sessions.listLineItems(s.id, { limit: 100 });
+        items = li.data.map((l) => `${l.quantity} × ${l.description}`);
+      } catch (err) {
+        console.error("Could not list line items", err);
+      }
+      if (!items.length) items = (m.items ?? (m.quantity ? `${m.quantity} × Fredagslådan` : "")).split("\n").filter(Boolean);
       await sendMail({
-        subject: `Ny Fredagslåda: ${m.quantity ?? 1} st – ${m.pickup}`,
+        subject: `Ny Deli To-Go att hämta ${m.pickup}`,
         replyTo: s.customer_details?.email ?? undefined,
         text: [
-          `Ny betald beställning av Fredagslådan.`,
+          `Ny betald Deli To-Go-beställning.`,
+          "",
+          ...items,
           "",
           `Hämtas: ${m.pickup}`,
-          `Antal: ${m.quantity}`,
           `Namn: ${m.name}`,
           `Telefon: ${m.phone}`,
           `E-post: ${s.customer_details?.email ?? "-"}`,

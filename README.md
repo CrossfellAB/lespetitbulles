@@ -9,7 +9,8 @@ Allt innehåll ligger i mappen `content/`:
 
 | Fil | Innehåll |
 | --- | --- |
-| `content/site.ts` | Adress, telefon, e-post, Instagram, öppettider, stängda dagar, Fredagslådans pris och regler, företagsnamn/org.nr |
+| `content/site.ts` | Adress, telefon, e-post, Instagram, öppettider, stängda dagar, företagsnamn/org.nr |
+| `content/deli.ts` | Deli To-Go: Fredagslådan, Ostpåsen, ostar i bit, tillbehör, priser och hämtningstider |
 | `content/events.ts` | Kommande event och provningar (passerade döljs automatiskt) |
 | `content/products.ts` | Nytt på hyllan |
 | `content/services.ts` | Texter för Catering, After work, Företag och Presenter |
@@ -23,7 +24,7 @@ Ta bort `example: true` från ett event eller en produkt när den är riktig, s�
 
 Se `.env.example`.
 
-- `STRIPE_SECRET_KEY` – krävs för att Fredagslådan ska kunna betalas.
+- `STRIPE_SECRET_KEY` – krävs för att Deli To-Go ska kunna betalas.
 - `STRIPE_WEBHOOK_SECRET` – valfritt; mejlar Josefin vid varje betald låda.
 - `RESEND_API_KEY` – krävs för att formulären ska skicka mejl (från hemsida@lespetitbulles.se). Utan den visas en "mejla oss"-länk. `MAIL_FROM` och `INQUIRY_TO` är valfria.
 - `NEXT_PUBLIC_SITE_URL` – valfritt; produktion använder https://www.lespetitbulles.se.

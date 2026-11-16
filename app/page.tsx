@@ -5,7 +5,8 @@ import ProductGrid from "@/components/ProductGrid";
 import FredagsladanTicket from "@/components/FredagsladanTicket";
 import { chapters } from "@/content/kurs";
 import { services } from "@/content/services";
-import { fredagsladan, openingHoursText, site } from "@/content/site";
+import { openingHoursText, site } from "@/content/site";
+import { fredagsladan } from "@/content/deli";
 import { products } from "@/content/products";
 
 export const revalidate = 3600;
@@ -24,7 +25,7 @@ export default function Home() {
           hem, eller låt oss ordna festen.
         </p>
         <div className="btn-row">
-          <Link href="/fredagsladan" className="btn btn-wine">Beställ Fredagslådan · {fredagsladan.priceSek} kr</Link>
+          <Link href="/deli-to-go" className="btn btn-wine">Deli To-Go · Fredagslådan {fredagsladan.variants[0].priceSek} kr</Link>
           <Link href="/event" className="btn btn-line">Se kommande provningar</Link>
         </div>
       </section>

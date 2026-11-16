@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fredagsladan } from "@/content/site";
+import { catalog, deliSettings } from "@/content/deli";
 import { dayLabel, isValidPickup } from "@/lib/pickup";
 import { getStripe } from "@/lib/stripe";
 import { siteUrl } from "@/lib/url";
@@ -13,22 +13,32 @@ export async function POST(req: Request) {
   const name = clean(body.name, 120);
   const phone = clean(body.phone, 40);
   const note = clean(body.note, 300);
-  const quantity = Number(body.quantity);
 
-  if (!name || !phone) return NextResponse.json({ error: "Fyll i namn och telefon." }, { status: 400 });
-  if (!Number.isInteger(quantity) || quantity < 1 || quantity > fredagsladan.maxQuantity) {
-    return NextResponse.json({ error: "Välj antal lådor." }, { status: 400 });
+  // Varukorgen kommer som { id: antal }. Priser och namn tas alltid från katalogen, aldrig från webbläsaren.
+  const rawItems = body.items && typeof body.items === "object" ? (body.items as Record<string, unknown>) : {};
+  const lines: { id: string; name: string; priceSek: number; quantity: number }[] = [];
+  for (const [id, q] of Object.entries(rawItems)) {
+    const item = catalog[id];
+    const quantity = Number(q);
+    if (!item || !Number.isInteger(quantity) || quantity < 0 || quantity > deliSettings.maxPerLine) {
+      return NextResponse.json({ error: "Något i varukorgen stämmer inte. Ladda om sidan och försök igen." }, { status: 400 });
+    }
+    if (quantity > 0) lines.push({ id, ...item, quantity });
   }
+
+  if (!lines.length) return NextResponse.json({ error: "Varukorgen är tom." }, { status: 400 });
+  if (!name || !phone) return NextResponse.json({ error: "Fyll i namn och telefon." }, { status: 400 });
   if (!isValidPickup(date, time)) {
-    return NextResponse.json({ error: "Den hämtningstiden går inte längre att välja. Ladda om sidan och välj en ny tid." }, { status: 400 });
+    return NextResponse.json({ error: "Den hämtningstiden går inte längre att välja. Välj en ny tid." }, { status: 400 });
   }
 
   const stripe = getStripe();
   if (!stripe) {
-    return NextResponse.json({ error: "Betalningen är inte aktiverad ännu. Ring oss så ordnar vi din låda." }, { status: 503 });
+    return NextResponse.json({ error: "Betalningen är inte aktiverad ännu. Ring oss så ordnar vi din beställning." }, { status: 503 });
   }
 
   const pickup = `${dayLabel(date)} kl. ${time.replace(":", ".")}`;
+  const summary = lines.map((l) => `${l.quantity} × ${l.name}`).join("\n");
   const base = siteUrl();
 
   try {
@@ -36,26 +46,20 @@ export async function POST(req: Request) {
       mode: "payment",
       locale: "sv",
       currency: "sek",
-      line_items: [
-        {
-          quantity,
-          price_data: {
-            currency: "sek",
-            unit_amount: fredagsladan.priceSek * 100,
-            product_data: { name: "Fredagslådan", description: `Hämtas ${pickup} i Lindens Galleria` },
-          },
-        },
-      ],
+      line_items: lines.map((l) => ({
+        quantity: l.quantity,
+        price_data: { currency: "sek", unit_amount: l.priceSek * 100, product_data: { name: l.name } },
+      })),
       phone_number_collection: { enabled: false },
       customer_creation: "if_required",
-      metadata: { pickup_date: date, pickup_time: time, pickup, name, phone, note, quantity: String(quantity) },
+      metadata: { pickup_date: date, pickup_time: time, pickup, name, phone, note, items: summary.slice(0, 500) },
       payment_intent_data: {
-        description: `Fredagslådan × ${quantity} – hämtas ${pickup} – ${name}`,
+        description: `Deli To-Go – hämtas ${pickup} – ${name}`.slice(0, 1000),
         metadata: { pickup, name, phone, note },
       },
-      custom_text: { submit: { message: `Du hämtar din Fredagslåda ${pickup} i Lindens Galleria, Norrköping.` } },
-      success_url: `${base}/fredagsladan/tack?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${base}/fredagsladan?avbruten=1`,
+      custom_text: { submit: { message: `Du hämtar din beställning ${pickup} i Lindens Galleria, Norrköping.` } },
+      success_url: `${base}/deli-to-go/tack?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${base}/deli-to-go?avbruten=1`,
     });
     return NextResponse.json({ url: session.url });
   } catch (err) {

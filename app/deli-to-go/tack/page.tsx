@@ -9,14 +9,12 @@ export const dynamic = "force-dynamic";
 export default async function Tack({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
   const { session_id } = await searchParams;
   let pickup: string | undefined;
-  let quantity: string | undefined;
   let paid = false;
   const stripe = getStripe();
   if (stripe && session_id?.startsWith("cs_")) {
     try {
       const s = await stripe.checkout.sessions.retrieve(session_id);
       pickup = s.metadata?.pickup;
-      quantity = s.metadata?.quantity;
       paid = s.payment_status === "paid";
     } catch {}
   }
@@ -26,7 +24,7 @@ export default async function Tack({ searchParams }: { searchParams: Promise<{ s
       <h1 className="h-xl">Tack för din beställning</h1>
       {pickup ? (
         <p className="lead">
-          {quantity && quantity !== "1" ? `${quantity} Fredagslådor` : "Din Fredagslåda"} står klar <b>{pickup}</b> i {site.address.line1}.
+          Din beställning står klar <b>{pickup}</b> i {site.address.line1}.
           {paid ? " Kvittot har skickats till din e-post." : " Vi bekräftar så snart betalningen är klar."}
         </p>
       ) : (
