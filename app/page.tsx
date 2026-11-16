@@ -52,11 +52,11 @@ export default function Home() {
           <div className="section-head">
             <div>
               <p className="eyebrow">Kalendern</p>
-              <h2 className="h-l">På tavlan just nu</h2>
+              <h2 className="h-l">Händer hos oss</h2>
             </div>
             <Link href="/event" className="note">Alla event och provningar →</Link>
           </div>
-          <EventList limit={3} />
+          <EventList limit={5} />
         </div>
       </section>
 

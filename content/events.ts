@@ -14,24 +14,34 @@ export type EventItem = {
 
 export const events: EventItem[] = [
   {
-    title: "Provning: Deutz & franska ostar",
-    date: "2026-11-27",
-    time: "18.30",
-    description: "Fyra champagner från huset Deutz i Aÿ, var och en med sin ost.",
-    example: true,
-  },
-  {
     title: "After work i baren",
-    recurring: "Varje fredag",
+    recurring: "Varje vardag",
     time: "16–19",
     description: "Ett glas bubbel och en liten charktallrik efter jobbet.",
-    example: true,
   },
   {
-    title: "Julbubbel: blanc de blancs mot rosé",
-    date: "2026-12-13",
-    time: "14.00",
-    description: "Lär dig skillnaden och hitta en flaska till julbordet.",
-    example: true,
+    title: "Bubbel-blindprovning",
+    date: "2026-11-18",
+    time: "16–19",
+    price: "269 kr/person",
+    description: "Champagne, crémant, prosecco, cava … Boka på 0708-47 91 00 eller kom förbi!",
+  },
+  {
+    title: "Beaujolais Nouveau-premiär",
+    date: "2026-11-19",
+    time: "11–19",
+    description: "Release av årets Bojo. Välkomna!",
+  },
+  {
+    title: "Sip & Paint",
+    date: "2026-11-25",
+    time: "16–19",
+    description: "Måla din egen julgranskula medan du bubblar.",
+  },
+  {
+    title: "Deutz Friday!",
+    date: "2026-11-27",
+    time: "15–19",
+    description: "Marcus från Swedish Brand Wines serverar Amour de Deutz och engelska Nyetimber.",
   },
 ];
