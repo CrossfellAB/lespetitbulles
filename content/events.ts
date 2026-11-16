@@ -15,7 +15,7 @@ export type EventItem = {
 export const events: EventItem[] = [
   {
     title: "After work i baren",
-    recurring: "Varje vardag",
+    recurring: "Onsdag till fredag",
     time: "16–19",
     description: "Ett glas bubbel och en liten charktallrik efter jobbet.",
   },
