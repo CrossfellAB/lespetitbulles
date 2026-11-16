@@ -87,7 +87,7 @@ export default function OrderForm({ days, price, maxQuantity, cancelled }: Props
         <button className="btn btn-clay" type="submit" disabled={busy}>{busy ? "Öppnar betalning …" : "Till betalning"}</button>
       </div>
       <p className="small" style={{ margin: 0 }}>
-        Du betalar säkert via Stripe med kort, Apple Pay, Google Pay eller Klarna. Kvitto skickas till din e-post.
+        Du betalar säkert via Stripe med kort, Apple Pay eller Google Pay. Vill du swisha väljer du Klarna och sedan Swish. Kvitto skickas till din e-post.
         Genom att beställa godkänner du våra <Link href="/villkor">köpvillkor</Link>.
       </p>
     </form>
