@@ -16,6 +16,7 @@ export type EventItem = {
 export const events: EventItem[] = [
   {
     title: "After work i baren",
+    dropIn: true,
     recurring: "Onsdag till fredag",
     time: "16–19",
     description: "Ett glas bubbel och en liten charktallrik efter jobbet.",
@@ -36,6 +37,7 @@ export const events: EventItem[] = [
   },
   {
     title: "Sip & Paint",
+    dropIn: true,
     date: "2026-11-25",
     time: "16–19",
     description: "Måla din egen julgranskula medan du bubblar.",

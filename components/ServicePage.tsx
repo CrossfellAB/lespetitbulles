@@ -34,7 +34,7 @@ export default function ServicePage({ slug }: { slug: Service["slug"] }) {
           <div className="panel wide" id="forfragan">
             <h2 className="h-m" style={{ marginBottom: 6 }}>{s.formTitle}</h2>
             <p className="small" style={{ marginTop: 0, marginBottom: 22 }}>{s.formIntro}</p>
-            <InquiryForm type={formType[slug]} showDate={s.showDate} showGuests={s.showGuests} email={site.email}
+            <InquiryForm type={formType[slug]} showDate={s.showDate} showGuests={s.showGuests} showBudget={s.showBudget} email={site.email}
               dateLabel={slug === "presenter" ? "När behöver du presenten?" : "Datum"} />
           </div>
         </div>

@@ -22,6 +22,7 @@ export async function POST(req: Request) {
   const phone = clean(body.phone, 40);
   const date = clean(body.date, 20);
   const guests = clean(body.guests, 10);
+  const budget = clean(body.budget, 60);
   const message = clean(body.message, 5000);
 
   if (!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -40,6 +41,7 @@ export async function POST(req: Request) {
     `Telefon: ${phone || "-"}`,
     date ? `Datum: ${date}` : "",
     guests ? `Antal personer: ${guests}` : "",
+    budget ? `Hur mycket får den kosta: ${budget}` : "",
     "",
     message,
     "",

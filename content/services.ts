@@ -14,6 +14,7 @@ export type Service = {
   formIntro: string;
   showDate: boolean;
   showGuests: boolean;
+  showBudget?: boolean;
 };
 
 export const services: Service[] = [
@@ -72,16 +73,17 @@ export const services: Service[] = [
     slug: "presenter",
     eyebrow: "Cadeaux",
     title: "Presenter",
-    lead: "Presentkort, korgar och flaskor. Vi slår in och skriver kort.",
+    lead: "Presentkort, korgar och delikatesser. Vi slår in och skriver kort.",
     image: "/img/cellar.jpg",
     imageAlt: "Champagne, ost och druvor i en vinkällare",
     body: [
       "Ett presentkort till en provning, en korg med ost och delikatesser eller en flaska champagne. Vi hjälper dig välja efter budget och smak, och slår in fint.",
       "Vill du beställa i förväg, eller behöver du många presenter till företaget? Skicka en förfrågan så har vi det klart när du kommer.",
     ],
-    points: ["Presentkort", "Korgar med ost och delikatesser", "Champagne och franska delikatesser"],
+    points: ["Presentkort", "Korgar med ost och delikatesser", "Franska delikatesser"],
     formTitle: "Beställ en present",
-    formIntro: "Skriv vad du tänkt dig och ungefärlig budget, så hör vi av oss.",
+    showBudget: true,
+    formIntro: "Skriv vad du tänkt dig, så hör vi av oss.",
     showDate: true,
     showGuests: false,
   },

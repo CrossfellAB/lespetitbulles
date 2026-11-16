@@ -6,6 +6,7 @@ type Props = {
   type: string; // t.ex. "Catering" – syns i mejlets ämnesrad
   showDate?: boolean;
   showGuests?: boolean;
+  showBudget?: boolean;
   dateLabel?: string;
   messageLabel?: string;
   defaultMessage?: string;
@@ -18,6 +19,7 @@ export default function InquiryForm({
   type,
   showDate,
   showGuests,
+  showBudget,
   dateLabel = "Datum",
   messageLabel = "Berätta mer",
   defaultMessage = "",
@@ -37,6 +39,7 @@ export default function InquiryForm({
         `Telefon: ${data.phone || "-"}`,
         data.date ? `${dateLabel}: ${data.date}` : "",
         data.guests ? `Antal personer: ${data.guests}` : "",
+        data.budget ? `Hur mycket får den kosta: ${data.budget}` : "",
         "",
         data.message,
       ].filter((l) => l !== "");
@@ -99,6 +102,12 @@ export default function InquiryForm({
               <input id={`${type}-guests`} name="guests" type="number" min={1} inputMode="numeric" />
             </div>
           )}
+        </div>
+      )}
+      {showBudget && (
+        <div className="field">
+          <label htmlFor={`${type}-budget`}>Hur mycket får den kosta?</label>
+          <input id={`${type}-budget`} name="budget" maxLength={60} placeholder="T.ex. 300 kr" />
         </div>
       )}
       <div className="field">
