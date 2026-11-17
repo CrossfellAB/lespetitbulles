@@ -18,6 +18,7 @@ export type Service = {
   theme?: "jul"; // säsongsutseende: mörk stjärnhimmel överst i stället för fotot
   notice?: string; // kort rad i sidhuvudet, t.ex. "Beställ i god tid före jul"
   video?: { slug: string; seconds: number; caption?: string }; // fil i public/video/<slug>.mp4 och .jpg
+  menuLink?: boolean; // visa länk till menyn under punktlistan
 };
 
 export const services: Service[] = [
@@ -40,6 +41,7 @@ export const services: Service[] = [
   },
   {
     slug: "after-work",
+    menuLink: true,
     eyebrow: "Après le travail",
     title: "After work",
     lead: "Ett glas bubbel och en liten charktallrik efter jobbet. Kom som du är.",

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import InquiryForm from "@/components/InquiryForm";
 import JulBand from "@/components/JulBand";
 import { getService, type Service } from "@/content/services";
@@ -34,6 +35,7 @@ export default function ServicePage({ slug }: { slug: Service["slug"] }) {
           <div className="prose">
             {s.body.map((p) => (<p key={p.slice(0, 20)}>{p}</p>))}
             <ul className="checklist">{s.points.map((p) => (<li key={p}>{p}</li>))}</ul>
+            {s.menuLink && <p style={{ marginTop: 20 }}><Link href="/meny">Se vad vi serverar i baren: menyn →</Link></p>}
             <p style={{ marginTop: 28 }} className="small">
               Hellre prata direkt? Ring Josefin på <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.
             </p>

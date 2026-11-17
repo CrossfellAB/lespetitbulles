@@ -39,6 +39,7 @@ export default function Home() {
           <div className="hours-card">
             <strong>Öppet</strong>
             <span>{openingHoursText.map((o) => (<span key={o.days}>{o.days} {o.hours}<br /></span>))}</span>
+            <Link href="/meny" className="hours-link">Se menyn →</Link>
           </div>
           <Image src="/img/cheeses.jpg" alt="Fem franska ostar på rad" width={700} height={560} sizes="(max-width: 860px) 50vw, 25vw" />
         </div>

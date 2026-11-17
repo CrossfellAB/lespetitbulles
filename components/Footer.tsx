@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
         <div>
           <h3>Öppettider</h3>
-          <p>{openingHoursText.map((o) => (<span key={o.days}>{o.days} {o.hours}<br /></span>))}</p>
+          <p>{openingHoursText.map((o) => (<span key={o.days}>{o.days} {o.hours}<br /></span>))}<Link href="/meny">Se menyn</Link></p>
         </div>
         <div>
           <h3>Kontakt</h3>
