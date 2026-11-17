@@ -77,7 +77,7 @@ export const services: Service[] = [
     image: "/img/cellar.jpg",
     imageAlt: "Champagne, ost och druvor i en vinkällare",
     body: [
-      "Ett presentkort till en provning, en korg med ost och delikatesser eller en flaska champagne. Vi hjälper dig välja efter budget och smak, och slår in fint.",
+      "Ett presentkort till en provning eller en korg med ost och delikatesser. Vi hjälper dig välja efter budget och smak, och slår in fint.",
       "Vill du beställa i förväg, eller behöver du många presenter till företaget? Skicka en förfrågan så har vi det klart när du kommer.",
     ],
     points: ["Presentkort", "Korgar med ost och delikatesser", "Franska delikatesser"],
