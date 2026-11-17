@@ -13,6 +13,7 @@ Allt innehåll ligger i mappen `content/`:
 | `content/deli.ts` | Deli To-Go: Fredagslådan, Ostpåsen, ostar i bit, tillbehör, priser och hämtningstider |
 | `content/events.ts` | Kommande event och provningar (passerade döljs automatiskt) |
 | `content/products.ts` | Nytt på hyllan |
+| `content/videos.ts` | Josefin tipsar: videorna på Butiken (filerna ligger i `public/video/`, klippta och komprimerade till 720×960) |
 | `content/services.ts` | Texter för Catering, After work, Företag och Presenter |
 | `content/kurs.ts` | De nio kapitlen i ost- och champagneskolan |
 

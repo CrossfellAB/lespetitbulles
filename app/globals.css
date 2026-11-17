@@ -354,3 +354,26 @@ a.event:hover { background: var(--chalk); color: var(--ink); }
   .photo-card { height: 340px; }
   .page-hero { padding-top: 32px; padding-bottom: 28px; }
 }
+
+/* Josefin tipsar: videokarusell på Butiken */
+.video-carousel { margin-top: 56px; }
+.video-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 24px; }
+.video-arrows { display: flex; gap: 8px; }
+.video-arrows button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--chalk); color: var(--plum); font-size: 18px; cursor: pointer; }
+.video-arrows button:hover { border-color: var(--wine); color: var(--wine); }
+.video-row { display: grid; grid-auto-flow: column; grid-auto-columns: 280px; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none; }
+.video-row::-webkit-scrollbar { display: none; }
+.video-card { margin: 0; scroll-snap-align: start; }
+.video-frame { position: relative; aspect-ratio: 3 / 4; border-radius: var(--radius); overflow: hidden; background: var(--night); }
+.video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-play { position: absolute; inset: 0; display: grid; place-items: center; border: 0; padding: 0; cursor: pointer; background: linear-gradient(180deg, transparent 55%, rgba(42, 30, 26, .45)); color: var(--wine); }
+.video-play span { width: 66px; height: 66px; border-radius: 50%; background: rgba(250, 245, 236, .94); display: grid; place-items: center; padding-left: 3px; transition: transform .15s; }
+.video-play:hover span { transform: scale(1.06); }
+.video-play small { position: absolute; right: 14px; bottom: 12px; color: var(--chalk); font-size: 13px; font-weight: 600; letter-spacing: .04em; }
+.video-card figcaption { padding: 12px 4px 0; display: grid; gap: 2px; }
+.video-card figcaption b { font-family: var(--serif); font-weight: 500; font-size: 20px; color: var(--plum); }
+.video-card figcaption span { font-size: 15px; line-height: 1.5; color: var(--muted); }
+@media (max-width: 640px) {
+  .video-row { grid-auto-columns: 74%; gap: 14px; }
+  .video-arrows { display: none; }
+}

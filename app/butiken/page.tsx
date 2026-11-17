@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import ProductGrid from "@/components/ProductGrid";
+import VideoCarousel from "@/components/VideoCarousel";
+import { videoTips } from "@/content/videos";
 import { openingHoursText, site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -22,6 +24,7 @@ export default function Butiken() {
       </section>
       <section className="wrap">
         <Image className="page-photo" src="/img/cheeses.jpg" alt="Franska ostar på rad" width={1600} height={900} priority sizes="100vw" />
+        {videoTips.length > 0 && <VideoCarousel videos={videoTips} />}
       </section>
       <section className="section">
         <div className="wrap" style={{ maxWidth: 1180 }}>
