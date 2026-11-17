@@ -13,7 +13,7 @@ export const site = {
     handle: "@lespetitbullesnorrkoping",
     url: "https://www.instagram.com/lespetitbullesnorrkoping/",
     // Flödeslänk från behold.so. Tom = avsnittet Senaste nytt på startsidan visas inte.
-    feedUrl: "",
+    feedUrl: "https://feeds.behold.so/jkDhanVNdt9lzfjw08CF",
   },
   facebook: { handle: "Les Petit Bulles Norrköping", url: "https://www.facebook.com/LesPetitBullesNorrkoping/" },
   // Juridisk säljare. Visas i sidfoten och i köpvillkoren. Org.nr visas när det fylls i.
