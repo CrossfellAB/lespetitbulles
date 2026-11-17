@@ -1,8 +1,9 @@
-// "Nytt på hyllan". De fyra första visas på startsidan, alla visas under Butiken.
+// "Nytt på hyllan": fyra nyheter som visas på startsidan och under Butiken.
+// Josefin byter ut dem i admin (/admin). Listan nedan används bara tills första gången något sparas där.
 
-export type Product = { category: string; name: string; description: string; example?: boolean };
+import type { StoredProduct } from "@/lib/store";
 
-export const products: Product[] = [
+export const products: StoredProduct[] = [
   { category: "Ost · Jura", name: "Comté 18 mån", description: "Nötig och knastrig. Perfekt till blanc de blancs.", example: true },
   { category: "Champagne · Aÿ", name: "Deutz Brut Classic", description: "Brödig och frisk. Husets favorit till brie.", example: true },
   { category: "Eget kök", name: "Jalapeñomarmelad", description: "Söt hetta som lyfter vitmögelost.", example: true },

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { glassMenu, menu, menuPdf, type MenuItem } from "@/content/meny";
+import { glassMenu, menu, menuPdf as textMenuPdf, type MenuItem } from "@/content/meny";
+import { getMenu, type MenuFile } from "@/lib/store";
 import { openingHoursText, site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -21,7 +22,29 @@ function Item({ item }: { item: MenuItem }) {
   );
 }
 
-export default function Meny() {
+// Josefins uppladdade meny visas som bilder av PDF-sidorna. Tills hon laddat upp en används textmenyn i content/meny.ts.
+function Pages({ file, title }: { file: MenuFile; title: string }) {
+  return (
+    <div className="menu-pages">
+      {file.pages.map((p, i) => (
+        <a key={p.url} href={file.pdf} target="_blank" rel="noopener noreferrer">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={p.url} width={p.width} height={p.height} alt={`${title}, sida ${i + 1} av ${file.pages.length}`} loading={i ? "lazy" : "eager"} />
+        </a>
+      ))}
+    </div>
+  );
+}
+
+const dateFmt = new Intl.DateTimeFormat("sv-SE", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Stockholm" });
+
+export const revalidate = 3600;
+
+export default async function Meny() {
+  const stored = await getMenu();
+  const menuPdf = stored.full
+    ? { href: stored.full.pdf, updated: dateFmt.format(new Date(stored.full.updated)) }
+    : textMenuPdf;
   return (
     <>
       <section className="wrap page-hero center">
@@ -36,22 +59,35 @@ export default function Meny() {
       </section>
 
       <section className="wrap" style={{ maxWidth: 980 }}>
-        <div className="glass-card">
-          <p className="eyebrow">Den här veckan</p>
-          <h2 className="h-l">Champagne på glas</h2>
-          <ul className="menu-list">
-            {glassMenu.map((i) => (<Item key={i.name} item={i} />))}
-          </ul>
-        </div>
+        {stored.glass ? (
+          <div className="glass-card">
+            <p className="eyebrow">Den här veckan</p>
+            <h2 className="h-l">Champagne på glas</h2>
+            <Pages file={stored.glass} title="Champagne på glas" />
+          </div>
+        ) : (
+          <div className="glass-card">
+            <p className="eyebrow">Den här veckan</p>
+            <h2 className="h-l">Champagne på glas</h2>
+            <ul className="menu-list">
+              {glassMenu.map((i) => (<Item key={i.name} item={i} />))}
+            </ul>
+          </div>
+        )}
         <nav className="menu-nav" aria-label="Menyns avsnitt">
-          {menu.map((g) => (<a key={g.id} href={`#${g.id}`}>{g.title}</a>))}
+          {!stored.full && menu.map((g) => (<a key={g.id} href={`#${g.id}`}>{g.title}</a>))}
           <a href={menuPdf.href} target="_blank" rel="noopener noreferrer" className="menu-pdf">Hela menyn som PDF ↓</a>
         </nav>
       </section>
 
       <section className="section-tight">
         <div className="wrap" style={{ maxWidth: 980 }}>
-          {menu.map((g) => (
+          {stored.full ? (
+            <div className="menu-group" id="hela-menyn">
+              <h2 className="h-l">Hela menyn</h2>
+              <Pages file={stored.full} title="Menyn" />
+            </div>
+          ) : menu.map((g) => (
             <div className="menu-group" id={g.id} key={g.id}>
               <h2 className="h-l">{g.title}</h2>
               <div className="menu-sections">

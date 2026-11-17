@@ -11,8 +11,8 @@ Allt innehåll ligger i mappen `content/`:
 | --- | --- |
 | `content/site.ts` | Adress, telefon, e-post, Instagram, öppettider, stängda dagar, företagsnamn/org.nr |
 | `content/deli.ts` | Deli To-Go: Fredagslådan, Ostpåsen, ostar i bit, tillbehör, priser och hämtningstider |
-| `content/events.ts` | Kommande event och provningar (passerade döljs automatiskt) |
-| `content/products.ts` | Nytt på hyllan |
+| `content/events.ts` | After work (fast rad) och startlistan med event. Daterade event sköter Josefin i /admin |
+| `content/products.ts` | Startlistan för Nytt på hyllan. Josefin byter nyheterna i /admin |
 | `content/meny.ts` | Menyn på /meny: veckans champagne på glas och hela menyn. PDF:en ligger i `public/meny/` |
 | `content/videos.ts` | Josefin tipsar: videorna på Butiken (filerna ligger i `public/video/`, klippta och komprimerade till 720×960) |
 | `content/services.ts` | Texter för Catering, After work, Företag och Presenter |
@@ -37,3 +37,17 @@ Se `.env.example`.
 npm install
 npm run dev
 ```
+
+## Admin för Josefin (/admin)
+
+Josefin loggar in på /admin med lösenordet i `ADMIN_PASSWORD` och kan själv:
+
+- lägga till, ändra och ta bort event (datum, tid, rubrik, beskrivning, drop-in eller anmäl intresse),
+- byta ut de fyra nyheterna i Nytt på hyllan, med foto,
+- ladda upp glasmenyn och hela menyn som PDF. Sidorna visas som bilder på /meny.
+
+Allt sparas i Vercel Blob (`BLOB_READ_WRITE_TOKEN`), inte i koden. Det som finns sparat där gäller före
+`content/events.ts` och `content/products.ts`, som bara används tills något sparats första gången.
+Utan `ADMIN_PASSWORD` och `ADMIN_SESSION_SECRET` är inloggningen avstängd. Byts lösenordet loggas alla ut.
+
+Lokalt utan Blob-nyckel sparas allt i mappen `.data/` (testläge).
