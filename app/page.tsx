@@ -4,8 +4,9 @@ import EventList from "@/components/EventList";
 import ProductGrid from "@/components/ProductGrid";
 import FredagsladanTicket from "@/components/FredagsladanTicket";
 import InstagramFeed from "@/components/InstagramFeed";
+import JulBand from "@/components/JulBand";
 import { chapters } from "@/content/kurs";
-import { services } from "@/content/services";
+import { getService, services } from "@/content/services";
 import { openingHoursText, site } from "@/content/site";
 import { fredagsladan } from "@/content/deli";
 import { products } from "@/content/products";
@@ -14,6 +15,7 @@ export const revalidate = 3600;
 
 export default function Home() {
   const cards = services.filter((s) => s.slug !== "after-work");
+  const jul = getService("presenter");
   return (
     <>
       <section className="wrap hero center">
@@ -48,6 +50,8 @@ export default function Home() {
           <FredagsladanTicket />
         </div>
       </section>
+
+      {jul.theme === "jul" && <JulBand s={jul} ctaHref="/presenter#forfragan" />}
 
       <section className="band section">
         <div className="wrap" style={{ maxWidth: 1180 }}>

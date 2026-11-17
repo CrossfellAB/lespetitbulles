@@ -406,7 +406,7 @@ a.event:hover { background: var(--chalk); color: var(--ink); }
   padding: 72px 0 80px;
 }
 .jul-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 56px; align-items: center; max-width: 1180px; }
-.jul-text h1 { color: var(--chalk); }
+.jul-text h1, .jul-text h2 { color: var(--chalk); }
 .jul-text .eyebrow { color: var(--apricot); }
 .jul-text .lead { color: rgba(250, 245, 236, .88); margin-top: 18px; }
 .jul-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 30px; }

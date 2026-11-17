@@ -1,6 +1,6 @@
 import Image from "next/image";
 import InquiryForm from "@/components/InquiryForm";
-import VideoPlayer from "@/components/VideoPlayer";
+import JulBand from "@/components/JulBand";
 import { getService, type Service } from "@/content/services";
 import { site } from "@/content/site";
 
@@ -16,25 +16,7 @@ export default function ServicePage({ slug }: { slug: Service["slug"] }) {
   return (
     <>
       {s.theme === "jul" ? (
-        <section className="jul-band">
-          <div className="wrap jul-grid">
-            <div className="jul-text">
-              <p className="eyebrow"><span aria-hidden="true">✦ </span>{s.eyebrow}</p>
-              <h1 className="h-xl">{s.title}</h1>
-              <p className="lead">{s.lead}</p>
-              <div className="jul-actions">
-                <a href="#forfragan" className="btn btn-clay">{s.formTitle}</a>
-                {s.notice && <span className="jul-notice">{s.notice}</span>}
-              </div>
-            </div>
-            {s.video && (
-              <figure className="jul-video">
-                <VideoPlayer slug={s.video.slug} title={s.video.caption ?? s.title} seconds={s.video.seconds} />
-                {s.video.caption && <figcaption>{s.video.caption}</figcaption>}
-              </figure>
-            )}
-          </div>
-        </section>
+        <JulBand s={s} asPageTitle ctaHref="#forfragan" />
       ) : (
         <>
           <section className="wrap page-hero center">
