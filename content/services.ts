@@ -15,6 +15,9 @@ export type Service = {
   showDate: boolean;
   showGuests: boolean;
   showBudget?: boolean;
+  theme?: "jul"; // säsongsutseende: mörk stjärnhimmel överst i stället för fotot
+  notice?: string; // kort rad i sidhuvudet, t.ex. "Beställ i god tid före jul"
+  video?: { slug: string; seconds: number; caption?: string }; // fil i public/video/<slug>.mp4 och .jpg
 };
 
 export const services: Service[] = [
@@ -71,19 +74,23 @@ export const services: Service[] = [
   },
   {
     slug: "presenter",
-    eyebrow: "Cadeaux",
-    title: "Presenter",
-    lead: "Presentkort, korgar och delikatesser. Vi slår in och skriver kort.",
+    eyebrow: "Cadeaux de Noël",
+    title: "Julklappar",
+    lead: "Du bestämmer summan, vi fixar julklapparna. Till personalen, kunderna eller någon du tycker om.",
+    theme: "jul",
+    notice: "Beställ i god tid före jul",
+    video: { slug: "julklappar", seconds: 21, caption: "Josefin visar årets julklappar" },
     image: "/img/cellar.jpg",
     imageAlt: "Champagne, ost och druvor i en vinkällare",
     body: [
-      "Ett presentkort till en provning eller en korg med ost och delikatesser. Vi hjälper dig välja efter budget och smak, och slår in fint.",
-      "Vill du beställa i förväg, eller behöver du många presenter till företaget? Skicka en förfrågan så har vi det klart när du kommer.",
+      "Vi sätter ihop julklappar med ost, delikatesser och godsaker från Frankrike, och gör dem efter dina önskemål. Säg vad de får kosta och vem de är till, så blir det något riktigt fint och gott.",
+      "Ska personalen eller kunderna få julklapp? Vi gör så många du behöver, likadana eller lite olika, och har dem inslagna och klara att hämta.",
+      "Letar du en julklapp till någon som redan har allt? En korg med ost och delikatesser eller ett presentkort till en provning brukar bli väl mottaget.",
     ],
-    points: ["Presentkort", "Korgar med ost och delikatesser", "Franska delikatesser"],
-    formTitle: "Beställ en present",
+    points: ["Julklappar till personal och kunder", "Korgar med ost och delikatesser", "Presentkort till en provning", "Inslaget och klart, med kort om du vill"],
+    formTitle: "Beställ julklappar",
     showBudget: true,
-    formIntro: "Skriv vad du tänkt dig, så hör vi av oss.",
+    formIntro: "Berätta vad du tänkt dig, hur många du behöver och när, så hör vi av oss.",
     showDate: true,
     showGuests: false,
   },

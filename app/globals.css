@@ -392,3 +392,31 @@ a.event:hover { background: var(--chalk); color: var(--ink); }
 .ig-date { position: absolute; left: 10px; bottom: 9px; color: var(--chalk); font-size: 12px; font-weight: 600; letter-spacing: .03em; text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
 @media (max-width: 960px) { .ig-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 560px) { .ig-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+
+/* Julutseende (Presenter i december): mörk vinröd stjärnhimmel med video */
+.jul-band {
+  background-color: var(--wine-deep);
+  background-image:
+    radial-gradient(rgba(231, 185, 143, .55) 1px, transparent 1.7px),
+    radial-gradient(rgba(250, 245, 236, .3) 1px, transparent 1.6px),
+    radial-gradient(ellipse at 80% 0%, rgba(181, 96, 58, .35), transparent 60%);
+  background-size: 52px 52px, 83px 83px, 100% 100%;
+  background-position: 0 0, 26px 37px, 0 0;
+  color: var(--chalk);
+  padding: 72px 0 80px;
+}
+.jul-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 56px; align-items: center; max-width: 1180px; }
+.jul-text h1 { color: var(--chalk); }
+.jul-text .eyebrow { color: var(--apricot); }
+.jul-text .lead { color: rgba(250, 245, 236, .88); margin-top: 18px; }
+.jul-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 30px; }
+.jul-notice { border: 1px solid rgba(231, 185, 143, .6); color: var(--apricot); border-radius: 30px; padding: 7px 16px; font-size: 14px; font-weight: 600; letter-spacing: .02em; }
+.jul-video { margin: 0; justify-self: center; width: 100%; max-width: 340px; }
+.jul-video .video-frame { box-shadow: 0 24px 60px rgba(20, 8, 12, .45); outline: 1px solid rgba(231, 185, 143, .35); outline-offset: 6px; }
+.jul-video figcaption { margin-top: 16px; text-align: center; font-family: var(--serif); font-style: italic; color: rgba(250, 245, 236, .75); }
+@media (max-width: 860px) {
+  .jul-band { padding: 44px 0 56px; }
+  .jul-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+  .jul-actions { justify-content: center; }
+  .jul-video { max-width: 300px; }
+}
