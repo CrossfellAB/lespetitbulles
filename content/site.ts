@@ -9,7 +9,12 @@ export const site = {
   phone: "0708-47 91 00",
   phoneHref: "+46708479100",
   email: "josefin@farmhousesweden.se",
-  instagram: { handle: "@lespetitbullesnorrkoping", url: "https://www.instagram.com/lespetitbullesnorrkoping/" },
+  instagram: {
+    handle: "@lespetitbullesnorrkoping",
+    url: "https://www.instagram.com/lespetitbullesnorrkoping/",
+    // Flödeslänk från behold.so. Tom = avsnittet Senaste nytt på startsidan visas inte.
+    feedUrl: "",
+  },
   facebook: { handle: "Les Petit Bulles Norrköping", url: "https://www.facebook.com/LesPetitBullesNorrkoping/" },
   // Juridisk säljare. Visas i sidfoten och i köpvillkoren. Org.nr visas när det fylls i.
   company: { name: "Swedish Farmhouse AB", orgNr: "556872-8033" },

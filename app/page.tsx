@@ -3,6 +3,7 @@ import Image from "next/image";
 import EventList from "@/components/EventList";
 import ProductGrid from "@/components/ProductGrid";
 import FredagsladanTicket from "@/components/FredagsladanTicket";
+import InstagramFeed from "@/components/InstagramFeed";
 import { chapters } from "@/content/kurs";
 import { services } from "@/content/services";
 import { openingHoursText, site } from "@/content/site";
@@ -60,6 +61,8 @@ export default function Home() {
           <EventList limit={5} />
         </div>
       </section>
+
+      <InstagramFeed />
 
       <section className="section">
         <div className="wrap">
