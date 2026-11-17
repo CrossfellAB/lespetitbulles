@@ -29,7 +29,7 @@ export default function Home() {
         </p>
         <div className="btn-row">
           <Link href="/deli-to-go" className="btn btn-wine">Deli To-Go · Fredagslådan {fredagsladan.variants[0].priceSek} kr</Link>
-          <Link href="/event" className="btn btn-line">Se kommande provningar</Link>
+          <Link href="/event" className="btn btn-line">Se kommande events &amp; provningar</Link>
         </div>
       </section>
 
