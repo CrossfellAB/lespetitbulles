@@ -27,7 +27,7 @@ export type StoredMenu = { glass?: MenuFile; full?: MenuFile };
 
 type Key = "events" | "products" | "menu";
 
-export const PRODUCT_SLOTS = 4;
+export const PRODUCT_SLOTS = 8;
 export const useBlob = () => !!process.env.BLOB_READ_WRITE_TOKEN;
 const localDir = path.join(process.cwd(), ".data");
 
@@ -74,7 +74,7 @@ export const getProducts = unstable_cache(
     const list = Array.isArray(data) ? (data as StoredProduct[]) : seedProducts;
     return list.slice(0, PRODUCT_SLOTS);
   },
-  ["store-products"],
+  ["store-products", "seed-2026-11-18"], // Byt nyckel när startlistan i content/products.ts ändras.
   { tags: ["store-products"], revalidate: 3600 },
 );
 

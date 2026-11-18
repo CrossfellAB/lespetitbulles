@@ -51,7 +51,7 @@ export default function ProductsAdmin({ initial, slots, mode }: { initial: Store
       <div className="adm-head">
         <div>
           <h2 className="h-m">Nytt på hyllan</h2>
-          <p className="small">Fyra nyheter som visas på startsidan och under Butiken. Välj vilken du vill byta ut.</p>
+          <p className="small">Upp till {slots} nyheter. De fyra första visas på startsidan, alla under Butiken. Välj vilken du vill byta ut.</p>
         </div>
       </div>
 

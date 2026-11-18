@@ -1,7 +1,7 @@
 import { getProducts } from "@/lib/store";
 
 export default async function ProductGrid({ limit }: { limit?: number }) {
-  const products = (await getProducts()).slice(0, limit);
+  const products = (await getProducts()).filter((p) => p.name).slice(0, limit);
   return (
     <div className="products">
       {products.map((p, i) => (
