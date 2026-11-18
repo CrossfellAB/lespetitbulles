@@ -23,7 +23,10 @@ export default function Villkor() {
       <h2 className="h-m" style={{ margin: "32px 0 12px" }}>Personuppgifter</h2>
       <p>När du beställer eller skickar en förfrågan sparar vi namn, e-post, telefon och det du skriver, för att kunna leverera och svara dig. Betalningar hanteras av Stripe och mejl skickas via vår e-posttjänst. Vi säljer eller delar inte dina uppgifter med någon annan och sparar dem inte längre än vi behöver för bokföring och kundkontakt.</p>
       <p>Vill du se, ändra eller ta bort dina uppgifter? Mejla {site.email}.</p>
-      <p>Sidan använder inga kakor för spårning eller reklam.</p>
+
+      <h2 id="kakor" className="h-m" style={{ margin: "32px 0 12px" }}>Kakor</h2>
+      <p>Om du godkänner det använder vi Meta-pixeln, en kaka från Meta (Facebook och Instagram). Den talar om för Meta att du besökt sidan, skickat en förfrågan eller gjort en beställning och vad den kostade, så att vi kan se vilka annonser som fungerar och visa annonser för rätt personer. Meta kan koppla uppgifterna till ditt konto hos dem. Vi skickar aldrig ditt namn, din e-post eller ditt telefonnummer till Meta.</p>
+      <p>Säger du nej laddas ingenting från Meta. Du kan ändra ditt val när som helst via länken Kakor längst ner på sidan. Utöver det använder sidan bara det som behövs för att varukorgen och sidan ska fungera.</p>
     </section>
   );
 }

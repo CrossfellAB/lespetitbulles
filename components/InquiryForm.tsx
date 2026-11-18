@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/pixel";
 
 type Props = {
   type: string; // t.ex. "Catering" – syns i mejlets ämnesrad
@@ -56,6 +57,7 @@ export default function InquiryForm({
       if (res.ok) {
         form.reset();
         setState({ status: "sent" });
+        track("Lead", { content_category: type, content_name: type });
       } else {
         setState({ status: "error", message: json.error, fallback: fallback() });
       }

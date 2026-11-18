@@ -18,6 +18,8 @@ export const site = {
   facebook: { handle: "Les Petit Bulles Norrköping", url: "https://www.facebook.com/LesPetitBullesNorrkoping/" },
   // Juridisk säljare. Visas i sidfoten och i köpvillkoren. Org.nr visas när det fylls i.
   company: { name: "Swedish Farmhouse AB", orgNr: "556872-8033" },
+  // Meta-pixeln "Les Petit Bulles webbplats" (New Gold Dream AB). Laddas bara om besökaren godkänt kakor.
+  metaPixelId: "1496517442362435",
 };
 
 // Öppettider. Veckodag: 0 = söndag, 1 = måndag … 6 = lördag.

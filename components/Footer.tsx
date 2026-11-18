@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { openingHoursText, site } from "@/content/site";
+import { CookieSettingsLink } from "@/components/MetaPixel";
 
 export default function Footer() {
   return (
@@ -30,7 +31,7 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} {site.name}{site.company.name ? ` · ${site.company.name}` : ""}{site.company.orgNr ? ` · Org.nr ${site.company.orgNr}` : ""}</span>
-        <span><Link href="/kontakt">Kontakt</Link> · <Link href="/villkor">Köpvillkor &amp; integritet</Link></span>
+        <span><Link href="/kontakt">Kontakt</Link> · <Link href="/villkor">Köpvillkor &amp; integritet</Link> · <CookieSettingsLink /></span>
       </div>
     </footer>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Work_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MetaPixel from "@/components/MetaPixel";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/url";
 import "./globals.css";
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="innehall">{children}</main>
         <Footer />
+        <MetaPixel />
       </body>
     </html>
   );
