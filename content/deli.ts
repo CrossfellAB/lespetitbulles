@@ -90,6 +90,32 @@ export const cheeses: DeliItem[] = [
       { id: "fuldmane-250", label: "250 g", priceSek: 155 },
     ],
   },
+  {
+    slug: "beemster-royaal",
+    name: "Beemster Royaal Grand Cru, 12 månader",
+    lead: "Beemster, Nederländerna",
+    image: "/img/ost-beemster.jpg",
+    imageContain: true,
+    imageAlt: "Hel Beemster Royaal Grand Cru med en bit och tärningar",
+    text: [
+      "En lagrad holländsk gouda från Beemsterpoldern norr om Amsterdam, där korna betar på lerjord som en gång var havsbotten.",
+      "Under tolv månaders lagring utvecklar osten en fyllig, rund smak med toner av karamell och rostade nötter och en lätt sötma i avslutningen. Fast och smidig i konsistensen, med små krispiga kristaller som visar att den fått ta sin tid. Lika god på ostbrickan som till ett glas champagne.",
+    ],
+    variants: [{ id: "beemster-royaal-200", label: "200 g", priceSek: 98 }],
+  },
+  {
+    slug: "montagnolo-affine",
+    name: "Montagnolo Affiné",
+    lead: "Allgäu, Tyskland",
+    image: "/img/ost-montagnolo.jpg",
+    imageContain: true,
+    imageAlt: "Hjul av Montagnolo Affiné med en utskuren bit",
+    text: [
+      "En krämig dubbelgrädd blåmögelost från Allgäu, med en vacker grå, lagrad skorpa.",
+      "Montagnolo är en mild och lättillgänglig blåmögelost, perfekt för den som tycker att blått brukar vara för starkt. Det smöriga, nästan smältande inre har ett fint blått stråk som ger djup utan att ta över. Härlig med honung, päron eller valnötter, och ett säkert kort på ostbrickan.",
+    ],
+    variants: [{ id: "montagnolo-150", label: "150 g", priceSek: 57 }],
+  },
 ];
 
 export const extras: DeliItem[] = [
