@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { catalog, deliSettings } from "@/content/deli";
+import { buildCatalog, deliSettings } from "@/content/deli";
 import { dayLabel, isValidPickup } from "@/lib/pickup";
+import { getDeli } from "@/lib/store";
 import { getStripe } from "@/lib/stripe";
 import { siteUrl } from "@/lib/url";
 
@@ -16,6 +17,8 @@ export async function POST(req: Request) {
 
   // Varukorgen kommer som { id: antal }. Priser och namn tas alltid från katalogen, aldrig från webbläsaren.
   const rawItems = body.items && typeof body.items === "object" ? (body.items as Record<string, unknown>) : {};
+  const deli = await getDeli();
+  const catalog = buildCatalog([...deli.cheeses, ...deli.extras]);
   const lines: { id: string; name: string; priceSek: number; quantity: number }[] = [];
   for (const [id, q] of Object.entries(rawItems)) {
     const item = catalog[id];

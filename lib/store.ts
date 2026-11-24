@@ -4,10 +4,11 @@ import { BlobNotFoundError, del, get, put } from "@vercel/blob";
 import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
 import { seedEvents } from "@/content/events";
 import { products as seedProducts } from "@/content/products";
+import { cheeses as seedCheeses, extras as seedExtras, type DeliItem } from "@/content/deli";
 
-// Det Josefin ändrar i admin sparas här: event, Nytt på hyllan och menyerna.
+// Det Josefin ändrar i admin sparas här: event, Nytt på hyllan, menyerna och Deli To-Go (ostar i bit och tillbehör).
 // På Vercel i Vercel Blob (BLOB_READ_WRITE_TOKEN). Lokalt, utan nyckel, i mappen .data/ så att allt går att testa.
-// Finns inget sparat ännu används startvärdena i content/events.ts och content/products.ts.
+// Finns inget sparat ännu används startvärdena i content/events.ts, content/products.ts och content/deli.ts.
 
 export type StoredEvent = {
   id: string;
@@ -24,8 +25,9 @@ export type StoredProduct = { category: string; name: string; description: strin
 export type MenuPage = { url: string; width: number; height: number };
 export type MenuFile = { pdf: string; pages: MenuPage[]; updated: string };
 export type StoredMenu = { glass?: MenuFile; full?: MenuFile };
+export type StoredDeli = { cheeses: DeliItem[]; extras: DeliItem[] };
 
-type Key = "events" | "products" | "menu";
+type Key = "events" | "products" | "menu" | "deli";
 
 export const PRODUCT_SLOTS = 8;
 export const useBlob = () => !!process.env.BLOB_READ_WRITE_TOKEN;
@@ -56,7 +58,7 @@ async function write(key: Key, data: unknown) {
     await fs.writeFile(path.join(localDir, `${key}.json`), body);
   }
   revalidateTag(`store-${key}`);
-  for (const p of ["/", "/event", "/butiken", "/meny", "/admin"]) revalidatePath(p);
+  for (const p of ["/", "/event", "/butiken", "/meny", "/deli-to-go", "/admin"]) revalidatePath(p);
 }
 
 export const getEvents = unstable_cache(
@@ -87,9 +89,22 @@ export const getMenu = unstable_cache(
   { tags: ["store-menu"], revalidate: 3600 },
 );
 
+export const getDeli = unstable_cache(
+  async (): Promise<StoredDeli> => {
+    const data = (await read("deli")) as Partial<StoredDeli> | null;
+    return {
+      cheeses: Array.isArray(data?.cheeses) ? data.cheeses : seedCheeses,
+      extras: Array.isArray(data?.extras) ? data.extras : seedExtras,
+    };
+  },
+  ["store-deli"],
+  { tags: ["store-deli"], revalidate: 3600 },
+);
+
 export const saveEvents = (list: StoredEvent[]) => write("events", list);
 export const saveProducts = (list: StoredProduct[]) => write("products", list);
 export const saveMenu = (menu: StoredMenu) => write("menu", menu);
+export const saveDeli = (deli: StoredDeli) => write("deli", deli);
 
 // Bara filer som ligger i vår egen lagring får användas som bild eller PDF.
 export function isOwnFile(url: unknown): url is string {

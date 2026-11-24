@@ -1,7 +1,8 @@
 // Deli To-Go: allt som går att beställa, betala och hämta i butiken.
 // Priser i hela kronor inklusive moms. Varje variant har ett eget id som används i varukorgen och i
 // betalningen, så byt inte id på en vara som någon kan ha i en öppen beställning.
-// Ta bort en vara genom att radera den. Lägg till en ost genom att kopiera en av ostarna nedan.
+// Ostar i bit och extra tillbehör ändrar Josefin i /admin (fliken Deli To-Go). Listorna här nedan är bara
+// startvärden som används tills något har sparats där. Fredagslådan, Ostpåsen och hämtningstiderna ändras här.
 
 export type DeliVariant = { id: string; label?: string; priceSek: number };
 
@@ -148,11 +149,14 @@ export const pickupHoursText = [
   { days: "Lördag", hours: "11–16" },
 ];
 
-const allItems = [fredagsladan, ostpasen, ...cheeses, ...extras];
+// id → namn som det står på kvittot, och pris. Ostarna och tillbehören kommer från det som är sparat i admin.
+export function buildCatalog(items: DeliItem[]): Record<string, { name: string; priceSek: number }> {
+  return Object.fromEntries(
+    [fredagsladan, ostpasen, ...items].flatMap((item) =>
+      item.variants.map((v) => [v.id, { name: v.label ? `${item.name}, ${v.label}` : item.name, priceSek: v.priceSek }]),
+    ),
+  );
+}
 
-// id → namn som det står på kvittot, och pris.
-export const catalog: Record<string, { name: string; priceSek: number }> = Object.fromEntries(
-  allItems.flatMap((item) =>
-    item.variants.map((v) => [v.id, { name: v.label ? `${item.name}, ${v.label}` : item.name, priceSek: v.priceSek }]),
-  ),
-);
+// Varu-id som aldrig får användas av ostar eller tillbehör.
+export const fixedVariantIds = [fredagsladan, ostpasen].flatMap((i) => i.variants.map((v) => v.id));

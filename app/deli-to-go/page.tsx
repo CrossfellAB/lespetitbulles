@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import DeliOrder from "@/components/DeliOrder";
-import { cheeses, deliSettings, extras, fredagsladan, ostpasen, pickupHoursText } from "@/content/deli";
+import { deliSettings, fredagsladan, ostpasen, pickupHoursText } from "@/content/deli";
 import { site } from "@/content/site";
 import { getPickupDays } from "@/lib/pickup";
+import { getDeli } from "@/lib/store";
 
 export const metadata: Metadata = {
   title: "Deli To-Go",
@@ -13,6 +14,7 @@ export const dynamic = "force-dynamic";
 export default async function DeliToGo({ searchParams }: { searchParams: Promise<{ avbruten?: string }> }) {
   const { avbruten } = await searchParams;
   const days = getPickupDays();
+  const { cheeses, extras } = await getDeli();
   return (
     <>
       <section className="wrap page-hero center">

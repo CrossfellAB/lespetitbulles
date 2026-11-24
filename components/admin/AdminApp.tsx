@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import type { StoredEvent, StoredMenu, StoredProduct } from "@/lib/store";
+import type { StoredDeli, StoredEvent, StoredMenu, StoredProduct } from "@/lib/store";
+import DeliAdmin from "./DeliAdmin";
 import EventsAdmin from "./EventsAdmin";
 import MenuAdmin from "./MenuAdmin";
 import ProductsAdmin from "./ProductsAdmin";
@@ -11,9 +12,10 @@ const tabs = [
   { key: "events", label: "Event & provningar" },
   { key: "products", label: "Nytt på hyllan" },
   { key: "menu", label: "Menyn" },
+  { key: "deli", label: "Deli To-Go" },
 ] as const;
 
-type Props = { events: StoredEvent[]; products: StoredProduct[]; menu: StoredMenu; slots: number; mode: UploadMode; today: string };
+type Props = { events: StoredEvent[]; products: StoredProduct[]; menu: StoredMenu; deli: StoredDeli; slots: number; mode: UploadMode; today: string };
 
 export default function AdminApp(props: Props) {
   const [tab, setTab] = useState<(typeof tabs)[number]["key"]>("events");
@@ -46,6 +48,7 @@ export default function AdminApp(props: Props) {
       <div hidden={tab !== "events"}><EventsAdmin initial={props.events} today={props.today} /></div>
       <div hidden={tab !== "products"}><ProductsAdmin initial={props.products} slots={props.slots} mode={props.mode} /></div>
       <div hidden={tab !== "menu"}><MenuAdmin initial={props.menu} mode={props.mode} /></div>
+      <div hidden={tab !== "deli"}><DeliAdmin initial={props.deli} mode={props.mode} /></div>
     </div>
   );
 }
